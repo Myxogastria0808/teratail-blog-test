@@ -1,0 +1,272 @@
+/*デザインcss↓*/
+h1 {
+    padding-left: 10px;
+}
+.h1-container {
+    width: 100%;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.body-container {
+    width: 100%;
+    max-width: 1024px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.box_con {
+max-width: 900px;
+margin-left: auto;
+margin-right: auto;
+}
+@media only screen and (max-width: 768px) {
+.box_con {
+width: 95%;
+}
+}
+.box_con form {
+width: 100%;
+}
+.box_con form table {
+width: 100%;
+}
+.box_con form table tr {
+position: relative;
+}
+.box_con form table tr:after {
+content: "";
+position: absolute;
+width: 100%;
+left: 0;
+bottom: 0;
+height: 1px;
+border-bottom: dotted #cdcdcd 1px;
+}
+.box_con form table tr {
+width: 30%;
+font-weight: normal;
+padding: 1em .5em;
+-moz-box-sizing: border-box;
+-webkit-box-sizing: border-box;
+box-sizing: border-box;
+}
+th {
+    width: 110px;
+    font-weight: normal;
+    /* padding-top: 1em; */
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+@media only screen and (max-width: 768px) {
+.box_con form table tr th {
+text-align: center;
+width: 100%;
+display: block;
+/* background: #97ae88; */
+/* padding: .8em .2em; */
+color: #000000;
+font-size: 20px;
+}
+}
+.box_con form table tr th span {
+background: #cd6f55;
+padding: 0 .3em;
+color: #fff;
+margin-left: .5em;
+-moz-box-sizing: border-box;
+-webkit-box-sizing: border-box;
+box-sizing: border-box;
+}
+.box_con form table tr td {
+padding: 1em .5em;
+-moz-box-sizing: border-box;
+-webkit-box-sizing: border-box;
+box-sizing: border-box;
+}
+@media only screen and (max-width: 768px) {
+.box_con form table tr td {
+padding: 1.5em .5em;
+display: block;
+width: 100%;
+}
+}
+.box_con form table tr .box_br {
+display: block;
+}
+.box_con form table tr select {
+border: 1px solid #97ae88;
+}
+.box_con form table tr label input {
+cursor: pointer;
+display: none;
+vertical-align: middle;
+}
+.box_con form table tr .radio02-input + label {
+padding-left: 23px;
+margin-right: 20px;
+position: relative;
+}
+.box_con form table tr .radio02-input + label:before {
+content: "";
+display: block;
+position: absolute;
+top: 50%;
+left: 0;
+width: 16px;
+height: 16px;
+border: 1px solid #999;
+border-radius: 50%;
+-moz-transform: translateY(-50%);
+-ms-transform: translateY(-50%);
+-webkit-transform: translateY(-50%);
+transform: translateY(-50%);
+}
+.box_con form table tr .radio02-input:checked + label:after {
+content: "";
+display: block;
+position: absolute;
+top: 50%;
+left: 3px;
+width: 12px;
+height: 12px;
+background: #97ae88;
+border-radius: 50%;
+-moz-transform: translateY(-50%);
+-ms-transform: translateY(-50%);
+-webkit-transform: translateY(-50%);
+transform: translateY(-50%);
+}
+.box_con form table tr select, .box_con form table tr input, .box_con form table tr textarea {
+width: 100%;
+height: 3em;
+padding: .5em;
+-moz-box-sizing: border-box;
+-webkit-box-sizing: border-box;
+box-sizing: border-box;
+}
+.box_con form table tr textarea {
+height: 10em;
+}
+
+/*プライバシーのデザインcss↓*/
+.con_pri {
+max-width: 700px;
+margin: 0auto;
+}
+@media only screen and (max-width: 768px) {
+.con_pri {
+width: 95%;
+}
+}
+.con_pri .box_pri {
+height: 300px;
+overflow-y: scroll;
+border: 1px solid #cdcdcd;
+background: #f7f7f7;
+-moz-box-sizing: border-box;
+-webkit-box-sizing: border-box;
+box-sizing: border-box;
+margin-top: 20px;
+padding: 20px 55px;
+}
+@media only screen and (max-width: 768px) {
+.con_pri .box_pri {
+margin-top: 4%;
+padding: 3%;
+}
+}
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+.con_pri .box_pri {
+padding: 4%;
+}
+}
+.con_pri .box_pri .box_tori {
+text-align: left;
+margin-top: 40px;
+}
+@media only screen and (max-width: 768px) {
+.con_pri .box_pri .box_tori {
+margin-top: 4%;
+}
+}
+.con_pri .box_pri .box_tori h4 {
+font-weight: normal;
+margin-bottom: 30px;
+font-size: 150%;
+}
+@media only screen and (max-width: 768px) {
+.con_pri .box_pri .box_tori h4 {
+margin-bottom: 4%;
+}
+}
+.con_pri .box_pri .box_tori .txt {
+padding: 0 20px;
+}
+@media only screen and (max-width: 768px) {
+.con_pri .box_pri .box_tori .txt {
+padding: 0;
+}
+}
+.con_pri .box_pri .box_num {
+margin-top: 30px;
+}
+@media only screen and (max-width: 768px) {
+.con_pri .box_pri .box_num {
+margin-top: 5%;
+}
+}
+.con_pri .box_pri .box_num h4 {
+font-weight: normal;
+font-size: 113%;
+}
+.con_pri .box_pri .box_num .txt {
+padding: 10px 0 0 20px;
+}
+@media only screen and (max-width: 768px) {
+.con_pri .box_pri .box_num .txt {
+padding: 3% 0 0 3%;
+}
+}
+
+.box_check {
+text-align: center;
+margin: 1em auto;
+}
+.box_check label {
+display: inline-block;
+}
+.box_check label span {
+margin-left: .3em;
+}
+
+.btn {
+text-align: center;
+height: 30px;
+font-size: 18px;
+}
+.login {
+    height: 30px;
+    font-size: 18px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+.btn input {
+display: inline-block;
+background: rgb(135, 179, 144);
+/* padding: .5em 4em; */
+color: #ffffff;
+text-decoration: none;
+cursor: pointer;
+border: none;
+-moz-transition: all 0.4s;
+-o-transition: all 0.4s;
+-webkit-transition: all 0.4s;
+transition: all 0.4s;
+}
+.btn input:hover {
+filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
+opacity: 0.7;
+}

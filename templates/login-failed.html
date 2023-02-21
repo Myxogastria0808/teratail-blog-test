@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/login-failed.css') }}">
+<title>ログインエラー</title>
+{% endblock %}
+{% block body %}
+    <h1 class="ja">ログインに失敗しました。</h1>
+    <a href="/login" class="btn_27 button ja">戻る</a>
+{% endblock %}

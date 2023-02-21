@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/index.css') }}">
+<title>ブログトップページ</title>
+{% endblock %}
+{% block body %}
+<div class="body-container">
+    <div class="h1-container">
+        <h1 class="ja">ブログトップページ</h1>
+        <div class="button-parent">
+            <div class="button-child"><a href="/logout" class="btn_27 create ja">ブログサイトからログアウトする</a></div>
+            <div class="button-child"><a href="/login" class="btn_27 create ja">ログイン</a></div>
+            <div class="button-child"><a href="/signup" class="btn_27 create ja">登録</a></div>
+        </div>
+    </div>
+</div>
+<br>
+<div class="body-container">
+    <div class="h1-container">
+        <h1 class="ja">投稿されているブログ一覧</h1>
+    </div>
+</div>
+{% for blog in blog %}
+<br>
+<div class="member-container">
+    <h2 class="ja">{{ blog.title }}</h2>
+    <p>投稿者{{ blog.user_username }}</p>
+    <p class="ja calender">{{ blog.context }}</p>
+</div>
+<br>
+{% endfor %}
+{% endblock %}

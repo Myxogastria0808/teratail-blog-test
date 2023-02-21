@@ -1,0 +1,58 @@
+h1 {
+    text-align: center;
+}
+.button {
+    margin-left: auto;
+    margin-right: auto;
+}
+a.btn_27 {
+	display: block;
+	text-align: center;
+	vertical-align: middle;
+	text-decoration: none;
+	width: 120px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 10px;
+    padding-left: 10px;
+	/* padding: 1rem 4rem; */
+	color: #fff;
+	font-weight: bold;
+	background: rgb(170, 200, 175);
+	position: relative;
+	transition: 0.3s ease-in-out;
+}
+a.btn_27:hover {
+    background: #fff;
+    color: rgb(170, 200, 175);
+}
+a.btn_27:before, a.btn_27:after {
+    box-sizing: inherit;
+    content: "";
+    position: absolute;
+    border: 2px solid transparent;
+    width: 0;
+    height: 0;
+}
+a.btn_27:before {
+    top: 0;
+    left: 0;
+}
+a.btn_27:after {
+    bottom: 0;
+    right: 0;
+}
+a.btn_27:hover:before, a.btn_27:hover:after {
+    width: 100%;
+    height: 100%;
+}
+a.btn_27:hover:before {
+    border-top-color: rgb(170, 200, 175);
+    border-right-color: rgb(170, 200, 175);
+    transition: width 0.15s ease-out, height 0.15s ease-out 0.15s;
+}
+a.btn_27:hover:after {
+    border-bottom-color: rgb(170, 200, 175);
+    border-left-color: rgb(170, 200, 175);
+    transition: border-color 0s ease-out 0.2s, width 0.15s ease-out 0.2s, height 0.15s ease-out 0.3s;
+}

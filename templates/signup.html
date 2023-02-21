@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/signup.css') }}">
+<title>アカウント登録</title>
+{% endblock %}
+{% block body %}
+<div class="body-container">
+    <div class="h1-container">
+        <h1 class="ja">アカウント登録</h1>
+    </div>
+    <div class="box_con">
+        <form method="POST">
+            {{ form.csrf_token }}
+            <table class="formTable">
+                <tr>
+                    <th class="ja">ユーザー名</th>
+                    <td>{{ form.username(size="30") }}</td>
+                </tr>
+                <tr>
+                    <th class="ja">メールアドレス</th>
+                    <td>{{ form.email(size="30") }}</td>
+                </tr>
+                <tr>
+                    <th class="ja">パスワード</th>
+                    <td>{{ form.password(size="30") }}</td>
+                </tr>
+            </table>
+            <p class="btn">
+                <span>{{ form.submit(class="ja login") }}</span>
+            </p>
+        </form>
+        <div class="button"><a href="/top" class="btn_27 ja">トップページに戻る</a></div>
+    </div>
+</div>
+{% endblock %}

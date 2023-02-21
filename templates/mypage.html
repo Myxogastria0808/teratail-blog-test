@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/mypage.css') }}">
+<title>マイページ</title>
+{% endblock %}
+{% block body %}
+<div class="body-container">
+    <div class="h1-container">
+        <h1 class="ja">{{user.username}}さんのマイページ</h1>
+        <div class="button-parent">
+            <div class="button-child"><a href="/{{user.id}}/update" class="btn_27 create ja">アカウント情報の変更</a></div>
+            <div class="button-child"><a href="/{{user.id}}/blogcreate" class="btn_27 create ja">新規投稿</a></div>
+            <div class="button-child"><a href="/bloglogout" class="btn_27 create ja">ログアウト</a></div>
+        </div>
+    </div>
+</div>
+{% for blog in blog %}
+<br>
+<div class="member-container">
+    <p class="ja text">Blog ID: {{ blog.id }}</p>
+    <h2 class="ja">{{ blog.title }}</h2>
+    <p class="ja text">{{ blog.context }}</p>
+    <div class="button-parent-user">
+        <div class="button-child"><a href="{{blog.id}}/blogupdate" class="btn_27 button-padding ja">編集</a></div>
+        <div class="button-child"><a href="{{blog.id}}/blogdelete" class="btn_27 button-padding ja">削除</a></div>
+    </div>
+</div>
+<br>
+{% endfor %}
+{% endblock %}
