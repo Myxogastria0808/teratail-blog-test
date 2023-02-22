@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/blog.css') }}">
+<title>ブログトップページ</title>
+{% endblock %}
+{% block body %}
+<h1 class="ja">{{blog.title}}</h1>
+<div class="button-parent-user">
+    <div class="button-child"><a href="/top" class="btn_27 button-padding ja">トップに戻る</a></div>
+</div>
+<p class="ja">　{{blog.context}}</p>
+{% endblock %}

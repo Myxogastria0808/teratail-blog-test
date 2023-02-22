@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin, LoginManager, login_user, logout_user, login_required
 from flask_bcrypt import Bcrypt
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, EmailField, SubmitField
+from wtforms import StringField, PasswordField, EmailField, SelectField, SubmitField
 from datetime import timedelta
 from flask_talisman import Talisman, ALLOW_FROM
 #秘密鍵の生成
@@ -102,11 +102,13 @@ class Blog(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.Text(), nullable=False)
     context = db.Column(db.Text(), nullable=False)
+    img = db.Column(db.Integer, nullable=False)
     user_id = db.Column(db.Integer, nullable=False)
     user_username  = db.Column(db.String(100), nullable=False)
-    def __init__(self, title, context, user_id, user_username):
+    def __init__(self, title, context, img, user_id, user_username):
         self.title = title
         self.context = context
+        self.img = img
         self.user_id = user_id
         self.user_username = user_username
 
@@ -139,7 +141,8 @@ def password():
 @talisman(frame_options=ALLOW_FROM, frame_options_allow_from='*')
 def top():
     if 'login' in session and session['login'] and request.method == 'GET':
-        blog = Blog.query.all()
+        # blog = Blog.query.all()
+        blog = Blog.query.join(User, User.id == Blog.user_id).add_columns(Blog.id, Blog.title, Blog.context, Blog.img, User.username).all()
         return render_template('index.html', blog=blog)
     else:
         return redirect('/password')
@@ -152,6 +155,17 @@ def logout():
             session.pop('login', None)
             return redirect('/password')
 
+@app.route('/<int:id>/blog', methods=['GET'])
+@talisman(frame_options=ALLOW_FROM, frame_options_allow_from='*')
+def blog(id):
+    if 'login' in session and session['login']:
+        blog = Blog.query.get(id)
+        if request.method == 'GET':
+            return render_template('blog.html', blog=blog)
+    else:
+        return redirect('/password')
+
+
 @app.route('/login', methods=['GET', 'POST'])
 @talisman(frame_options=ALLOW_FROM, frame_options_allow_from='*')
 def login():
@@ -161,7 +175,6 @@ def login():
             email = form.email.data
             password= form.password.data
             user = User.query.filter_by(email=email).one_or_none()
-            blog = Blog.query.filter_by(user_id=user.id)
             if user is None or not bcrypt.check_password_hash(user.password, password) == True:
                 return render_template('login-failed.html')
             login_user(user)
@@ -189,7 +202,6 @@ def signup():
     else:
         return redirect('/password')
 
-##########
 @app.route('/bloglogout', methods=['GET'])
 @login_required
 @talisman(frame_options=ALLOW_FROM, frame_options_allow_from='*')
@@ -208,8 +220,9 @@ def blogcreate(id):
         if form.validate_on_submit():
             title = form.title.data
             context = form.context.data
+            img = id%4
             user = User.query.get(id)
-            blog = Blog(title=title, context=context, user_id=id, user_username=user.username)
+            blog = Blog(title=title, context=context, user_id=id, user_username=user.username, img=img)
             db.session.add(blog)
             db.session.commit()
             user = User.query.get(id)
@@ -231,6 +244,7 @@ def blogupdate(blog_id, user_id):
         if form.validate_on_submit():
             blog.title = form.title.data
             blog.context = form.context.data
+            blog.img = blog_id%4
             db.session.commit()
             user = User.query.get(user_id)
             return render_template('blogupdate-success.html', user=user)

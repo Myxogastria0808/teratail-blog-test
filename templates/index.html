@@ -4,6 +4,19 @@
 <title>ブログトップページ</title>
 {% endblock %}
 {% block body %}
+<div id="loader">
+  <div class="wrapper">
+      <div class="box-wrap">
+          <div class="box one"></div>
+          <div class="box two"></div>
+          <div class="box three"></div>
+          <div class="box four"></div>
+          <div class="box five"></div>
+          <div class="box six"></div>
+      </div>
+  </div>
+</div>
+
 <div class="body-container">
     <div class="h1-container">
         <h1 class="ja">ブログトップページ</h1>
@@ -22,11 +35,72 @@
 </div>
 {% for blog in blog %}
 <br>
-<div class="member-container">
-    <h2 class="ja">{{ blog.title }}</h2>
-    <p>投稿者{{ blog.user_username }}</p>
-    <p class="ja calender">{{ blog.context }}</p>
+<div class="member-container{{blog.img}}">
+    <h1 class="ja text-white">{{ blog.title }}</h1>
+    <h3 class="ja text-white">投稿者: {{ blog.username }}</h3>
+    <div class="button-parent-user">
+      <div class="button-child"><a href="/{{ blog.id }}/blog" class="btn_27 button-padding ja">投稿記事を読む</a></div>
+    </div>
 </div>
 <br>
 {% endfor %}
+<script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
 {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="modal01" class="PopUp modal js-modal">
+    <div class="PopUp modal-bg js-modal-close">
+    </div>
+    <div class="PopUp modal-content">
+      <div class="PopUp modal-padding">
+        <div class="PopUp closed_cover_PopUp">
+          <div class="PopUp closed_div_chr_PopUp">無題</div>
+          <a href="#" class="PopUp js-modal-close">
+                <div class="PopUp closed_div_PopUp"></div>
+          </a>
+        </div>
+        <div class="PopUp closed_div_p_scroll">
+          <br>
+          <p class="PopUp PopUp-content">
+            
+            <div class="img_div">
+              <img alt="No Image" id="Outline_img" src="./picture01.png">
+            </div>
+            <div class="year-cover-other">
+              <u class="u">制作: 74回生　多鹿 咲姫</u>
+            </div>
+            <br>
+            <div class="div-schedule">
+              <p class="p-schedule">第34回　全国 WE LOVE トンボ絵画コンクール</p>
+              <p class="content left">環境大臣賞</p>
+              <p class="p-schedule">令和元年度</p>
+              <p class="content left">兵庫県ゆずりは賞受賞</p>
+            </div>
+
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
