@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin, LoginManager, login_user, logout_user, login_required
 from flask_bcrypt import Bcrypt
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, EmailField, SelectField, SubmitField
+from wtforms import StringField, PasswordField, EmailField, SubmitField, TextAreaField
 from datetime import timedelta
 from flask_talisman import Talisman, ALLOW_FROM
 #秘密鍵の生成
@@ -18,7 +18,6 @@ csp = {
         '\'self\'',
         '*.google.com',
         '*.google-analytics.com',
-        '*.small.chat',
         '*.gstatic.com',
     ]
 }
@@ -60,12 +59,12 @@ class UpdateForm(FlaskForm):
 
 class BlogCreateForm(FlaskForm):
     title = StringField('タイトル')
-    context = StringField('内容')
+    context = TextAreaField('内容')
     submit = SubmitField('作成')
 
 class BlogUpdateForm(FlaskForm):
     title = StringField('タイトル')
-    context = StringField('内容')
+    context = TextAreaField('内容')
     submit = SubmitField('更新')
 #flask-wtf end
 #ユーザー情報の読み込み
@@ -104,13 +103,11 @@ class Blog(db.Model):
     context = db.Column(db.Text(), nullable=False)
     img = db.Column(db.Integer, nullable=False)
     user_id = db.Column(db.Integer, nullable=False)
-    user_username  = db.Column(db.String(100), nullable=False)
-    def __init__(self, title, context, img, user_id, user_username):
+    def __init__(self, title, context, img, user_id):
         self.title = title
         self.context = context
         self.img = img
         self.user_id = user_id
-        self.user_username = user_username
 
 with app.app_context():
     db.create_all()
@@ -178,7 +175,7 @@ def login():
             if user is None or not bcrypt.check_password_hash(user.password, password) == True:
                 return render_template('login-failed.html')
             login_user(user)
-            return render_template('login-success.html', user=user)
+            return redirect(app.url_for('mypage', id=user.id))
         else:
             return render_template('login.html', form=form)
     else:
@@ -221,15 +218,14 @@ def blogcreate(id):
             title = form.title.data
             context = form.context.data
             img = id%4
-            user = User.query.get(id)
-            blog = Blog(title=title, context=context, user_id=id, user_username=user.username, img=img)
+            blog = Blog(title=title, context=context, user_id=id, img=img)
             db.session.add(blog)
             db.session.commit()
             user = User.query.get(id)
-            return render_template('blogcreate-success.html', user=user)
+            return redirect(app.url_for('mypage', id=user.id))
         else:
             user = User.query.get(id)
-            return render_template('blogcreate.html', form=form , id=id, user=user)
+            return render_template('blogcreate.html', form=form, user=user)
     else:
         logout_user()
         return redirect('/password')
@@ -247,7 +243,7 @@ def blogupdate(blog_id, user_id):
             blog.img = blog_id%4
             db.session.commit()
             user = User.query.get(user_id)
-            return render_template('blogupdate-success.html', user=user)
+            return redirect(app.url_for('mypage', id=user.id))
         else:
             form.title.data = blog.title
             form.context.data = blog.context
@@ -267,7 +263,7 @@ def blogdelete(blog_id, user_id):
             db.session.delete(blog)
             db.session.commit()
             user = User.query.get(user_id)
-            return render_template('blogdelete-success.html', user=user)
+            return redirect(app.url_for('mypage', id=user.id))
     else:
         logout_user()
         return redirect('/password')
@@ -297,7 +293,7 @@ def update(id):
             user.email = form.email.data
             db.session.commit()
             user = User.query.get(id)
-            return render_template('update-success.html', user=user)
+            return redirect(app.url_for('mypage', id=user.id))
         else:
             form.username.data = user.username
             form.email.data = user.email
@@ -305,8 +301,6 @@ def update(id):
     else:
         logout_user()
         return redirect('/password')
-
-
 
 
 @app.errorhandler(404)

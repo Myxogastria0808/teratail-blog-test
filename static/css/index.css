@@ -3,7 +3,7 @@
   padding: 10px;
   margin-left: auto;
   margin-right: auto;
-  box-shadow: 0 10px 25px 0 rgba(170, 200, 175, 0.7);
+  box-shadow: 0 10px 25px 0 rgba(117, 134, 62, 0.7);
   background-image: url(../img/1.webp);
   background-size: cover;
   background-position: center;
@@ -14,7 +14,7 @@
   padding: 10px;
   margin-left: auto;
   margin-right: auto;
-  box-shadow: 0 10px 25px 0 rgba(170, 200, 175, 0.7);
+  box-shadow: 0 10px 25px 0 rgba(117, 134, 62, 0.7);
   background-image: url(../img/2.webp);
   background-size: cover;
   background-position: center;
@@ -25,7 +25,7 @@
   padding: 10px;
   margin-left: auto;
   margin-right: auto;
-  box-shadow: 0 10px 25px 0 rgba(170, 200, 175, 0.7);
+  box-shadow: 0 10px 25px 0 rgba(117, 134, 62, 0.7);
   background-image: url(../img/3.webp);
   background-size: cover;
   background-position: center;
@@ -36,14 +36,12 @@
   padding: 10px;
   margin-left: auto;
   margin-right: auto;
-  box-shadow: 0 10px 25px 0 rgba(170, 200, 175, 0.7);
+  box-shadow: 0 10px 25px 0 rgba(117, 134, 62, 0.7);
   background-image: url(../img/0.webp);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
-
-
 h1, .button-padding {
   padding-left: 10px;
 }
@@ -59,13 +57,9 @@ h1, .button-padding {
   margin-left: auto;
   margin-right: auto;
 }
-
-
-
-
-
-
-
+.box-shadow {
+  box-shadow: 0 0 8px #ffffff;
+}
 .btn_27 {
 cursor: pointer;
 display: block;
@@ -77,16 +71,15 @@ padding-top: 5px;
 padding-bottom: 5px;
 padding-right: 10px;
 padding-left: 10px;
-/* padding: 1rem 4rem; */
 color: #fff;
 font-weight: bold;
-background: rgb(170, 200, 175);
 position: relative;
 transition: 0.3s ease-in-out;
+background-color: rgb(117, 134, 62);
 }
 .btn_27:hover {
   background: #fff;
-  color: rgb(170, 200, 175);
+  color: rgb(117, 134, 62);
 }
 .btn_27:before, .btn_27:after {
 box-sizing: inherit;
@@ -109,13 +102,13 @@ width: 100%;
 height: 100%;
 }
 .btn_27:hover:before {
-border-top-color: rgb(170, 200, 175);
-border-right-color: rgb(170, 200, 175);
+border-top-color: rgb(117, 134, 62);
+border-right-color: rgb(117, 134, 62);
 transition: width 0.15s ease-out, height 0.15s ease-out 0.15s;
 }
 .btn_27:hover:after {
-border-bottom-color: rgb(170, 200, 175);
-border-left-color: rgb(170, 200, 175);
+border-bottom-color: rgb(117, 134, 62);
+border-left-color: rgb(117, 134, 62);
 transition: border-color 0s ease-out 0.2s, width 0.15s ease-out 0.2s, height 0.15s ease-out 0.3s;
 }
 .button-parent {
@@ -131,30 +124,25 @@ margin-right: 10px;
 .button-child {
 margin-right: 10px;
 }
-.calender {
-word-wrap: break-word;
+@media only screen and (min-width: 900px) {
+  .title {
+    font-size: 50px;
+  }
 }
-.text, .calender {
-margin-top: 5px;
-}
-.subtitle {
-color: #fff;
-display:inline-block;
-padding-top: 3px;
-padding-bottom: 3px;
-padding-left: 15px;
-padding-right: 15px;
-margin-right: 15px;
-margin-bottom: 0px;
-margin-top: 5px;
-background-color: rgb(170, 200, 175);
+@media only screen and (max-width: 900px) {
+  .title {
+    font-size: 40px;
+  }
 }
 h2 {
 margin-top: 0px;
 }
 .text-white {
-  color: #000000;
+  color: #ffffff;
   font-weight: bold;
+  text-shadow:2px 2px 3px #000000c5;
+  width: 100%;
+  word-wrap: break-word;
 }
 h3 {
   padding-left: 10px;

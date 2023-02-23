@@ -11,17 +11,6 @@ h1 {
     font-size: 40px;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
 .btn_27 {
 cursor: pointer;
 display: block;
@@ -33,16 +22,15 @@ padding-top: 5px;
 padding-bottom: 5px;
 padding-right: 10px;
 padding-left: 10px;
-/* padding: 1rem 4rem; */
 color: #fff;
 font-weight: bold;
-background: rgb(170, 200, 175);
+background: rgb(117, 134, 62);
 position: relative;
 transition: 0.3s ease-in-out;
 }
 .btn_27:hover {
   background: #fff;
-  color: rgb(170, 200, 175);
+  color: rgb(117, 134, 62);
 }
 .btn_27:before, .btn_27:after {
 box-sizing: inherit;
@@ -65,13 +53,13 @@ width: 100%;
 height: 100%;
 }
 .btn_27:hover:before {
-border-top-color: rgb(170, 200, 175);
-border-right-color: rgb(170, 200, 175);
+border-top-color: rgb(117, 134, 62);
+border-right-color: rgb(117, 134, 62);
 transition: width 0.15s ease-out, height 0.15s ease-out 0.15s;
 }
 .btn_27:hover:after {
-border-bottom-color: rgb(170, 200, 175);
-border-left-color: rgb(170, 200, 175);
+border-bottom-color: rgb(117, 134, 62);
+border-left-color: rgb(117, 134, 62);
 transition: border-color 0s ease-out 0.2s, width 0.15s ease-out 0.2s, height 0.15s ease-out 0.3s;
 }
 .button-parent-user {

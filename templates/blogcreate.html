@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block title %}
-<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/member-signup.css') }}">
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/blogcreate.css') }}">
 <title>ブログ作成画面</title>
 {% endblock %}
 {% block body %}
@@ -9,7 +9,6 @@
         <h1 class="ja">ブログ作成画面</h1>
     </div>
     <div class="box_con">
-        <h3>{{ id }}</h3>
         <form method="POST">
             {{ form.csrf_token }}
             <table class="formTable">
@@ -19,14 +18,14 @@
                 </tr>
                 <tr>
                     <th class="ja">内容</th>
-                    <td>{{ form.context(size="30") }}</td>
+                    <td>{{ form.context(cols="50", rows="5") }}</td>
                 </tr>
             </table>
             <p class="btn">
                 <span>{{ form.submit(class="ja login") }}</span>
             </p>
         </form>
-        <div class="button"><a href="/{{user.id}}/mypage" class="btn_27 ja">戻る</a></div>
+        <div class="button"><a href="/{{user.id}}/mypage" class="btn_27 ja">住処に戻る</a></div>
     </div>
 </div>
 {% endblock %}

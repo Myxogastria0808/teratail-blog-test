@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 {% block title %}
 <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/mypage.css') }}">
-<title>マイページ</title>
+<title>{{user.username}}の住処</title>
 {% endblock %}
 {% block body %}
 <div class="body-container">
     <div class="h1-container">
-        <h1 class="ja">{{user.username}}さんのマイページ</h1>
+        <h1 class="ja">{{user.username}}の住処</h1>
         <div class="button-parent">
             <div class="button-child"><a href="/{{user.id}}/update" class="btn_27 create ja">アカウント情報の変更</a></div>
             <div class="button-child"><a href="/{{user.id}}/blogcreate" class="btn_27 create ja">新規投稿</a></div>

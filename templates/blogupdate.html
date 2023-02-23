@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block title %}
-<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/member-signup.css') }}">
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/blogupdate.css') }}">
 <title>ブログ内容の編集画面</title>
 {% endblock %}
 {% block body %}
@@ -18,7 +18,7 @@
                 </tr>
                 <tr>
                     <th class="ja">内容</th>
-                    <td>{{ form.context(size="30") }}</td>
+                    <td>{{ form.context(cols="50", rows="5") }}</td>
                 </tr>
             </table>
             <p class="btn">

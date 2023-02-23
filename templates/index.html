@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %}
 <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/index.css') }}">
-<title>ブログトップページ</title>
+<title>別れの言葉</title>
 {% endblock %}
 {% block body %}
 <div id="loader">
@@ -19,27 +19,22 @@
 
 <div class="body-container">
     <div class="h1-container">
-        <h1 class="ja">ブログトップページ</h1>
+        <h1 class="ja title">別れの言葉</h1>
         <div class="button-parent">
-            <div class="button-child"><a href="/logout" class="btn_27 create ja">ブログサイトからログアウトする</a></div>
+            <div class="button-child"><a href="/logout" class="btn_27 create ja">旅立つ</a></div>
             <div class="button-child"><a href="/login" class="btn_27 create ja">ログイン</a></div>
-            <div class="button-child"><a href="/signup" class="btn_27 create ja">登録</a></div>
+            <div class="button-child"><a href="/signup" class="btn_27 create ja">アカウント登録</a></div>
         </div>
     </div>
 </div>
 <br>
-<div class="body-container">
-    <div class="h1-container">
-        <h1 class="ja">投稿されているブログ一覧</h1>
-    </div>
-</div>
 {% for blog in blog %}
 <br>
 <div class="member-container{{blog.img}}">
     <h1 class="ja text-white">{{ blog.title }}</h1>
-    <h3 class="ja text-white">投稿者: {{ blog.username }}</h3>
+    <h3 class="ja text-white">旅立つ者: {{ blog.username }}</h3>
     <div class="button-parent-user">
-      <div class="button-child"><a href="/{{ blog.id }}/blog" class="btn_27 button-padding ja">投稿記事を読む</a></div>
+      <div class="button-child box-shadow"><a href="/{{ blog.id }}/blog" class="btn_27 button-padding ja">旅立ちの言葉</a></div>
     </div>
 </div>
 <br>

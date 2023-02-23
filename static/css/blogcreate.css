@@ -1,18 +1,17 @@
-/*デザインcss↓*/
 h1 {
-    padding-left: 10px;
+  padding-left: 10px;
 }
 .h1-container {
-    width: 100%;
-    max-width: 900px;
-    margin-left: auto;
-    margin-right: auto;
+  width: 100%;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
 }
 .body-container {
-    width: 100%;
-    max-width: 1024px;
-    margin-left: auto;
-    margin-right: auto;
+  width: 100%;
+  max-width: 1024px;
+  margin-left: auto;
+  margin-right: auto;
 }
 .box_con {
 max-width: 900px;
@@ -51,20 +50,17 @@ padding: 1em .5em;
 box-sizing: border-box;
 }
 th {
-    width: 110px;
-    font-weight: normal;
-    /* padding-top: 1em; */
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
+  width: 110px;
+  font-weight: normal;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
 }
 @media only screen and (max-width: 768px) {
 .box_con form table tr th {
 text-align: center;
 width: 100%;
 display: block;
-/* background: #97ae88; */
-/* padding: .8em .2em; */
 color: #000000;
 font-size: 20px;
 }
@@ -95,7 +91,7 @@ width: 100%;
 display: block;
 }
 .box_con form table tr select {
-border: 1px solid #97ae88;
+border: 1px solid rgb(117, 134, 62);
 }
 .box_con form table tr label input {
 cursor: pointer;
@@ -130,7 +126,7 @@ top: 50%;
 left: 3px;
 width: 12px;
 height: 12px;
-background: #97ae88;
+background: rgb(117, 134, 62);
 border-radius: 50%;
 -moz-transform: translateY(-50%);
 -ms-transform: translateY(-50%);
@@ -148,8 +144,6 @@ box-sizing: border-box;
 .box_con form table tr textarea {
 height: 10em;
 }
-
-/*プライバシーのデザインcss↓*/
 .con_pri {
 max-width: 700px;
 margin: 0auto;
@@ -246,17 +240,16 @@ height: 30px;
 font-size: 18px;
 }
 .login {
-    height: 30px;
-    font-size: 18px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    padding-left: 50px;
-    padding-right: 50px;
+  height: 30px;
+  font-size: 18px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 50px;
+  padding-right: 50px;
 }
 .btn input {
 display: inline-block;
-background: rgb(135, 179, 144);
-/* padding: .5em 4em; */
+background: rgb(117, 134, 62);
 color: #ffffff;
 text-decoration: none;
 cursor: pointer;
@@ -270,67 +263,58 @@ transition: all 0.4s;
 filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
 opacity: 0.7;
 }
-
-
-
-
-
-
-
-
 a.btn_27 {
-	display: block;
-	text-align: center;
-	vertical-align: middle;
-	text-decoration: none;
-	width: 120px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-right: 10px;
-  padding-left: 10px;
-	/* padding: 1rem 4rem; */
-	color: #fff;
-	font-weight: bold;
-	background: rgb(170, 200, 175);
-	position: relative;
-	transition: 0.3s ease-in-out;
+display: block;
+text-align: center;
+vertical-align: middle;
+text-decoration: none;
+width: 120px;
+padding-top: 5px;
+padding-bottom: 5px;
+padding-right: 10px;
+padding-left: 10px;
+color: #fff;
+font-weight: bold;
+background: rgb(117, 134, 62);
+position: relative;
+transition: 0.3s ease-in-out;
 }
 a.btn_27:hover {
-    background: #fff;
-    color: rgb(170, 200, 175);
+  background: #fff;
+  color: rgb(117, 134, 62);
 }
 a.btn_27:before, a.btn_27:after {
-  box-sizing: inherit;
-  content: "";
-  position: absolute;
-  border: 2px solid transparent;
-  width: 0;
-  height: 0;
+box-sizing: inherit;
+content: "";
+position: absolute;
+border: 2px solid transparent;
+width: 0;
+height: 0;
 }
 a.btn_27:before {
-  top: 0;
-  left: 0;
+top: 0;
+left: 0;
 }
 a.btn_27:after {
-  bottom: 0;
-  right: 0;
+bottom: 0;
+right: 0;
 }
 a.btn_27:hover:before, a.btn_27:hover:after {
-  width: 100%;
-  height: 100%;
+width: 100%;
+height: 100%;
 }
 a.btn_27:hover:before {
-  border-top-color: rgb(170, 200, 175);
-  border-right-color: rgb(170, 200, 175);
-  transition: width 0.15s ease-out, height 0.15s ease-out 0.15s;
+border-top-color: rgb(117, 134, 62);
+border-right-color: rgb(117, 134, 62);
+transition: width 0.15s ease-out, height 0.15s ease-out 0.15s;
 }
 a.btn_27:hover:after {
-  border-bottom-color: rgb(170, 200, 175);
-  border-left-color: rgb(170, 200, 175);
-  transition: border-color 0s ease-out 0.2s, width 0.15s ease-out 0.2s, height 0.15s ease-out 0.3s;
+border-bottom-color: rgb(117, 134, 62);
+border-left-color: rgb(117, 134, 62);
+transition: border-color 0s ease-out 0.2s, width 0.15s ease-out 0.2s, height 0.15s ease-out 0.3s;
 }
 .button {
-    margin-right: 10px;
-    display: flex;
-    justify-content: flex-end;
-  }
+  margin-right: 10px;
+  display: flex;
+  justify-content: flex-end;
+}
