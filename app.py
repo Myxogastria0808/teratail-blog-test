@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin, LoginManager, login_user, logout_user, login_required
 from flask_bcrypt import Bcrypt
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, EmailField, SubmitField, TextAreaField
+from wtforms import StringField, PasswordField, EmailField, SubmitField, TextAreaField, ValidationError
 from datetime import timedelta
 from flask_talisman import Talisman, ALLOW_FROM
 #秘密鍵の生成
@@ -40,32 +40,90 @@ bcrypt = Bcrypt(app)
 class PasswordForm(FlaskForm):
     password = PasswordField('パスワード')
     submit = SubmitField('ログイン')
+    def validate_password(self, password):
+        if password.data == '':
+            raise ValidationError('パスワードを入力してください。')
+        if password.data != 'em0AWF0egXGEB4rNl39v':
+            raise ValidationError('パスワードが間違っています。')
 
 class LoginForm(FlaskForm):
     email = EmailField('メールアドレス')
     password = PasswordField('パスワード')
     submit = SubmitField('ログイン')
+    def validate_email(self, email):
+        if email.data == '':
+            raise ValidationError('メールアドレスを入力してください。')
+        if '@' not in email.data:
+            raise ValidationError('メールアドレスの形式ではありません。')
+        if len(email.data) > 100:
+            raise ValidationError('メールアドレスは、全て100文字以下で登録されています。')
+    def validate_password(self, password):
+        if password.data == '':
+            raise ValidationError('パスワードを入力してください。')
 
 class RegisterForm(FlaskForm):
     username = StringField('ユーザー名')
     email = EmailField('メールアドレス')
     password = PasswordField('パスワード')
     submit = SubmitField('登録')
+    def validate_username(self, username):
+        if username.data == '':
+            raise ValidationError('ユーザーを入力してください。')
+        if len(username.data) > 100:
+            raise ValidationError('ユーザー名は、100文字以下で設定してください。')
+    def validate_email(self, email):
+        if email.data == '':
+            raise ValidationError('メールアドレスを入力してください。')
+        if '@' not in email.data:
+            raise ValidationError('メールアドレスの形式ではありません。')
+        if len(email.data) > 100:
+            raise ValidationError('メールアドレスは、100文字以下で設定してください。')
+    def validate_password(self, password):
+        if password.data == '':
+            raise ValidationError('パスワードを入力してください。')
 
 class UpdateForm(FlaskForm):
     username = StringField('ユーザー名')
     email = EmailField('メールアドレス')
     submit = SubmitField('更新')
+    def validate_username(self, username):
+        if username.data == '':
+            raise ValidationError('ユーザーを入力してください。')
+        if len(username.data) > 100:
+            raise ValidationError('ユーザー名は、100文字以下で設定してください。')
+    def validate_email(self, email):
+        if email.data == '':
+            raise ValidationError('メールアドレスを入力してください。')
+        if '@' not in email.data:
+            raise ValidationError('メールアドレスの形式ではありません。')
+        if len(email.data) > 100:
+            raise ValidationError('メールアドレスは、100文字以下で設定してください。')
 
 class BlogCreateForm(FlaskForm):
     title = StringField('タイトル')
     context = TextAreaField('内容')
     submit = SubmitField('作成')
+    def validate_title(self, title):
+        if title.data == '':
+            raise ValidationError('タイトルを入力してください。')
+        if len(title.data) > 20:
+            raise ValidationError("タイトルは20文字以下にしてください。")
+    def validate_context(self, context):
+        if context.data == '':
+            raise ValidationError('内容を入力してください。')
 
 class BlogUpdateForm(FlaskForm):
     title = StringField('タイトル')
     context = TextAreaField('内容')
     submit = SubmitField('更新')
+    def validate_title(self, title):
+        if title.data == '':
+            raise ValidationError('タイトルを入力してください。')
+        if len(title.data) > 20:
+            raise ValidationError("タイトルは20文字以下にしてください。")
+    def validate_context(self, context):
+        if context.data == '':
+            raise ValidationError('内容を入力してください。')
 #flask-wtf end
 #ユーザー情報の読み込み
 @login_manager.user_loader
@@ -88,7 +146,7 @@ db = SQLAlchemy(app)
 class User(UserMixin, db.Model):
     __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(100), nullable=False)
+    username = db.Column(db.String(100), nullable=False, unique=True)
     email = db.Column(db.String(100), nullable=False, unique=True)
     password = db.Column(db.String(100), nullable=False)
     def __init__(self, username, email, password):
@@ -138,7 +196,6 @@ def password():
 @talisman(frame_options=ALLOW_FROM, frame_options_allow_from='*')
 def top():
     if 'login' in session and session['login'] and request.method == 'GET':
-        # blog = Blog.query.all()
         blog = Blog.query.join(User, User.id == Blog.user_id).add_columns(Blog.id, Blog.title, Blog.context, Blog.img, User.username).all()
         return render_template('index.html', blog=blog)
     else:
@@ -190,9 +247,12 @@ def signup():
             username = form.username.data
             email = form.email.data
             password = form.password.data
-            user = User(username=username, email=email,  password=bcrypt.generate_password_hash(password).decode('utf-8'))
-            db.session.add(user)
-            db.session.commit()
+            try:
+                user = User(username=username, email=email,  password=bcrypt.generate_password_hash(password).decode('utf-8'))
+                db.session.add(user)
+                db.session.commit()
+            except:
+                return render_template('signup-failed.html')
             return redirect('/login')
         else:
             return render_template('signup.html', form=form)
@@ -288,10 +348,14 @@ def update(id):
     if 'login' in session and session['login']:
         form = UpdateForm()
         user = User.query.get(id)
+        user_id = user.id
         if form.validate_on_submit():
             user.username = form.username.data
             user.email = form.email.data
-            db.session.commit()
+            try:
+                db.session.commit()
+            except:
+                return render_template('update-failed.html', user_id=user_id)
             user = User.query.get(id)
             return redirect(app.url_for('mypage', id=user.id))
         else:

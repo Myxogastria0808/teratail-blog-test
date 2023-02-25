@@ -16,11 +16,23 @@
                     <th class="ja">タイトル</th>
                     <td>{{ form.title(size="30") }}</td>
                 </tr>
+            </table>
+            <div>
+                {% for error in form.title.errors %}
+                <h4 class="error ja">{{ error }}</h4>
+                {% endfor %}
+            </div>
+            <table class="formTable">
                 <tr>
                     <th class="ja">内容</th>
                     <td>{{ form.context(cols="50", rows="5") }}</td>
                 </tr>
             </table>
+            <div>
+                {% for error in form.context.errors %}
+                <h4 class="error ja">{{ error }}</h4>
+                {% endfor %}
+            </div>
             <p class="btn">
                 <span>{{ form.submit(class="ja login") }}</span>
             </p>

@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/signup-failed.css') }}">
+<title>異端者</title>
+{% endblock %}
+{% block body %}
+    <h1 class="ja">先人と同じ道を歩んで何が楽しいのだ</h1>
+    <p class="ja">＊ユーザー名、または、メールアドレスがすでに他のユーザーによって使われています。</p>
+    <a href="/signup" class="btn_27 button ja">戻る</a>
+{% endblock %}

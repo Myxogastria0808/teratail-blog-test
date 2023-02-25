@@ -4,6 +4,9 @@
 .ja {
     font-family: 'BIZ UDPMincho', serif;
 }
+.error {
+    color: rgb(207, 21, 58);
+}
 body, html {
     margin: 0;
     padding: 0;

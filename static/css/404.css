@@ -29,3 +29,6 @@
     background: rgb(117,188,255);
     background: linear-gradient(270deg, rgba(117,188,255,1) 0%, rgba(62,159,252,1) 100%);
 }
+h2 {
+    text-align: center;
+}

@@ -76,7 +76,8 @@ margin-right: 10px;
 }
 p {
   max-width: 850px;
-  width: 100%;
+  width: calc(100% - 20px);
+  word-wrap: break-word;
   margin-left: auto;
   margin-right: auto;
   padding-left: 10px;

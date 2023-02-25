@@ -16,11 +16,23 @@
                     <th class="ja">メールアドレス</th>
                     <td>{{ form.email(size="30") }}</td>
                 </tr>
+            </table>
+            <div>
+                {% for error in form.email.errors %}
+                <h4 class="error ja">{{ error }}</h4>
+                {% endfor %}
+            </div>
+            <table class="formTable">
                 <tr>
                     <th class="ja">パスワード</th>
                     <td>{{ form.password(size="30") }}</td>
                 </tr>
             </table>
+            <div>
+                {% for error in form.password.errors %}
+                <h4 class="error ja">{{ error }}</h4>
+                {% endfor %}
+            </div>
             <p class="btn">
                 <span>{{ form.submit(class="ja login") }}</span>
             </p>
